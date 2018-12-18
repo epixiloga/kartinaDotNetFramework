@@ -1,0 +1,28 @@
+﻿@model Kartina.Models.Photo
+
+@{
+    ViewBag.Title = "Creer";
+}
+
+<h2>Ajout d'une nouvelle Photo</h2>
+<form method="post">
+    <div class="row">
+        <div class="col-lg-3">Titre de la photo : </div>
+        <div class="col-lg-3"><input type="text" name="Titre" id="titrePhoto" /></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">Description de la photo : </div>
+        <div class="col-lg-3"><input type="text" name="Description" id="descriptionPhoto" /></div>
+    </div>
+
+    <div class="row">
+        <input type="submit" id="b1" value="Ajouter" />
+    </div>
+    <div class="row">
+        <div class="col-lg-3">Tag de la photo : </div>
+        <div class="col-lg-3"><input type="text" name="Tag" id="descriptionPhoto" /></div>
+    </div>
+</form>
+
+
+

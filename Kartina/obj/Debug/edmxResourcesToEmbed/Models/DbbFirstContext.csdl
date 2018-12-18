@@ -1,14 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="KartinaDotNetFrameworkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Photo">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="IdVendeur" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Vendeur" Relationship="Self.FK_Photo_Vendeur" FromRole="Photo" ToRole="Vendeur" />
-  </EntityType>
   <EntityType Name="Vendeur">
     <Key>
       <PropertyRef Name="Id" />
@@ -16,12 +7,29 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="FirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Photo" Relationship="Self.FK_Photo_Vendeur" FromRole="Vendeur" ToRole="Photo" />
     <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Photo" Relationship="KartinaDotNetFrameworkModel.FK_Photo_Vendeur" FromRole="Vendeur" ToRole="Photo" />
+  </EntityType>
+  <EntityContainer Name="KartinaDotNetFrameworkEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Vendeur" EntityType="Self.Vendeur" />
+    <EntitySet Name="Photo" EntityType="KartinaDotNetFrameworkModel.Photo" />
+    <AssociationSet Name="FK_Photo_Vendeur" Association="KartinaDotNetFrameworkModel.FK_Photo_Vendeur">
+      <End Role="Vendeur" EntitySet="Vendeur" />
+      <End Role="Photo" EntitySet="Photo" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Photo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IdVendeur" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Vendeur" Relationship="KartinaDotNetFrameworkModel.FK_Photo_Vendeur" FromRole="Photo" ToRole="Vendeur" />
   </EntityType>
   <Association Name="FK_Photo_Vendeur">
-    <End Role="Vendeur" Type="Self.Vendeur" Multiplicity="1" />
-    <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+    <End Type="KartinaDotNetFrameworkModel.Vendeur" Role="Vendeur" Multiplicity="1" />
+    <End Type="KartinaDotNetFrameworkModel.Photo" Role="Photo" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Vendeur">
         <PropertyRef Name="Id" />
@@ -31,12 +39,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="KartinaDotNetFrameworkEntities1" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Photo" EntityType="Self.Photo" />
-    <EntitySet Name="Vendeur" EntityType="Self.Vendeur" />
-    <AssociationSet Name="FK_Photo_Vendeur" Association="Self.FK_Photo_Vendeur">
-      <End Role="Vendeur" EntitySet="Vendeur" />
-      <End Role="Photo" EntitySet="Photo" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

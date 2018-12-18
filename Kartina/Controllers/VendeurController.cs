@@ -29,5 +29,10 @@ namespace Kartina.Controllers
             this.ViewBag.MonVendeur = vendeur;
             return View();
         }
+
+        public ActionResult Gallery()
+        {
+            return View();
+        }
     }
 }

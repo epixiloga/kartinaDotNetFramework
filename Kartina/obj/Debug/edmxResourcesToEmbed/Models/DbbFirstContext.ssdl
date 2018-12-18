@@ -8,8 +8,6 @@
     <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="IdVendeur" Type="int" Nullable="false" />
   </EntityType>
-  <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'KartinaDotNetFramework.dbo.Vendeur' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
   <EntityType Name="Vendeur">
     <Key>
       <PropertyRef Name="Id" />
@@ -19,15 +17,24 @@ avertissement 6002: La table/vue 'KartinaDotNetFramework.dbo.Vendeur' n'a pas de
     <Property Name="LastName" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="200" />
   </EntityType>
+  <Association Name="FK_Photo_Vendeur">
+    <End Role="Vendeur" Type="Self.Vendeur" Multiplicity="1" />
+    <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendeur">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Photo">
+        <PropertyRef Name="IdVendeur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="KartinaDotNetFrameworkModelStoreContainer">
     <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Vendeur" EntityType="Self.Vendeur" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Vendeur].[Id] AS [Id], 
-    [Vendeur].[FirstName] AS [FirstName], 
-    [Vendeur].[LastName] AS [LastName], 
-    [Vendeur].[Email] AS [Email]
-    FROM [dbo].[Vendeur] AS [Vendeur]</DefiningQuery>
-    </EntitySet>
+    <EntitySet Name="Vendeur" EntityType="Self.Vendeur" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Photo_Vendeur" Association="Self.FK_Photo_Vendeur">
+      <End Role="Vendeur" EntitySet="Vendeur" />
+      <End Role="Photo" EntitySet="Photo" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

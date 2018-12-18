@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="KartinaDotNetFrameworkModelStoreContainer" CdmEntityContainer="KartinaDotNetFrameworkEntities1">
-    <EntitySetMapping Name="Photo">
-      <EntityTypeMapping TypeName="KartinaDotNetFrameworkModel.Photo">
-        <MappingFragment StoreEntitySet="Photo">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="IdVendeur" ColumnName="IdVendeur" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Vendeur">
       <EntityTypeMapping TypeName="KartinaDotNetFrameworkModel.Vendeur">
         <MappingFragment StoreEntitySet="Vendeur">
@@ -17,6 +8,15 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Photo">
+      <EntityTypeMapping TypeName="KartinaDotNetFrameworkModel.Photo">
+        <MappingFragment StoreEntitySet="Photo">
+          <ScalarProperty Name="IdVendeur" ColumnName="IdVendeur" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

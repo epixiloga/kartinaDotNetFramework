@@ -5,9 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="968edc757fa04f7f87edab399b9129de" Name="Diagram1">
-        <EntityTypeShape EntityType="KartinaDotNetFrameworkModel.Photo" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="KartinaDotNetFrameworkModel.Vendeur" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="KartinaDotNetFrameworkModel.FK_Photo_Vendeur" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="KartinaDotNetFrameworkModel.Photo" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="KartinaDotNetFrameworkModel.FK_Photo_Vendeur" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -25,7 +25,7 @@ namespace Kartina.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Photo> Photo { get; set; }
         public virtual DbSet<Vendeur> Vendeur { get; set; }
+        public virtual DbSet<Photo> Photo { get; set; }
     }
 }
